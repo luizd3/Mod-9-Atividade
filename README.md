@@ -7,3 +7,5 @@ Usando a classe de Clientes desenvolvida nas aulas, crie uma lista com 10 client
 3.	Qual a média de compras dos clientes da lista?
 
 Use os Streams, funções e expressões lambda, métodos default e interfaces funcionais.
+
+Resposta: Classe 'Testa', linhas 13 a 24; e linhas 54 à 77.

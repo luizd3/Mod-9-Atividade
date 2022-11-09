@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Cliente implements Autenticador{
     private String nome;
     private boolean status;
@@ -12,7 +14,6 @@ public class Cliente implements Autenticador{
     }
 
     public String getNome() {
-        System.out.println(this.nome);
         return nome;
     }
 
@@ -37,7 +38,7 @@ public class Cliente implements Autenticador{
 
     @Override
     public boolean autentica(String senha) {
-        if (this.senha != senha){
+        if (!Objects.equals(this.senha, senha)){ // Antes: if (this.senha != senha){
             System.out.println("Não autenticado!");
             return false;
         } else {
