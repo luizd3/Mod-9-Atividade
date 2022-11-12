@@ -54,16 +54,16 @@ public class Testa {
         // ATIVIDADE MÓDULO 9:
 
         // Cliente que fez mais compras:
-        Stream<Cliente> streamMaisCompras = clientes.stream()
-                .max(Comparator.comparing(cliente -> cliente.getCompras()))
-                .stream();
+
         // Maior número de compras:
-        int maiorNumeroCompras = streamMaisCompras.findFirst().get().getCompras();
+        int maiorNumeroDeCompras = clientes.stream()
+                .max(Comparator.comparing(cliente -> cliente.getCompras()))
+                .get().getCompras();
         // Filtro com clientes que fizeram maior número de compras:
         System.out.println(" - Cliente(s) que fez(fizeram) mais compras: ");
-        List<Cliente> listaClientesMaisCompras = clientes.stream().
-                filter(cliente -> cliente.getCompras() == maiorNumeroCompras).
-                toList();
+        List<Cliente> listaClientesMaisCompras = clientes.stream()
+                .filter(cliente -> cliente.getCompras() == maiorNumeroDeCompras)
+                .toList();
         listaClientesMaisCompras.forEach(cliente ->
                 System.out.println("     - " + cliente.getNome() +
                         ", que comprou " + cliente.getCompras() + " vezes."));
