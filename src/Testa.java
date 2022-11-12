@@ -13,12 +13,12 @@ public class Testa {
         Cliente cli1 = new Cliente ("Fabiano",true, "123",9);
         Cliente cli2 = new Cliente ("Mentorama",true, "iop",30);
         Cliente cli3 = new Cliente ("Brasil",false, "qwe",50);
-        Cliente cli4 = new Cliente ("José",false, "qwe",19);
+        Cliente cli4 = new Cliente ("José",false, "qwe",57);
         Cliente cli5 = new Cliente ("Mariana",false, "qwe",5);
         Cliente cli6 = new Cliente ("Luiz",false, "qwe",23);
         Cliente cli7 = new Cliente ("Jéssica",false, "qwe",2);
         Cliente cli8 = new Cliente ("Alexandre",false, "qwe",12);
-        Cliente cli9 = new Cliente ("Marcela",false, "qwe",35);
+        Cliente cli9 = new Cliente ("Marcela",false, "qwe",57);
         Cliente cli10 = new Cliente ("Kiko",false, "qwe",57);
 
         List<Cliente> clientes = Arrays.asList(cli1,cli2,cli3,cli4,cli5,cli6,cli7,cli8,cli9,cli10);
@@ -57,15 +57,22 @@ public class Testa {
         Stream<Cliente> streamMaisCompras = clientes.stream()
                 .max(Comparator.comparing(cliente -> cliente.getCompras()))
                 .stream();
-        System.out.print("Cliente que fez mais compras: ");
-        Cliente clienteMaisCompras = streamMaisCompras.findFirst().get();
-        System.out.println(clienteMaisCompras.getNome() + ", que comprou " + clienteMaisCompras.getCompras() + " vezes.");
+        // Maior número de compras:
+        int maiorNumeroCompras = streamMaisCompras.findFirst().get().getCompras();
+        // Filtro com clientes que fizeram maior número de compras:
+        System.out.println(" - Cliente(s) que fez(fizeram) mais compras: ");
+        List<Cliente> listaClientesMaisCompras = clientes.stream().
+                filter(cliente -> cliente.getCompras() == maiorNumeroCompras).
+                toList();
+        listaClientesMaisCompras.forEach(cliente ->
+                System.out.println("     - " + cliente.getNome() +
+                        ", que comprou " + cliente.getCompras() + " vezes."));
 
         // Cliente que fez menos compras:
         Stream<Cliente> streamMenosCompras = clientes.stream()
                 .min(Comparator.comparing(Cliente :: getCompras))
                 .stream();
-        System.out.print("Cliente que fez menos compras: ");
+        System.out.print(" - Cliente que fez menos compras: ");
         Cliente clienteMenosCompras = streamMenosCompras.findFirst().get();
         System.out.println(clienteMenosCompras.getNome() + ", que comprou " + clienteMenosCompras.getCompras() + " vezes.");
 
@@ -74,6 +81,6 @@ public class Testa {
                 .mapToDouble(Cliente :: getCompras)
                 .average()
                 .getAsDouble();
-        System.out.print("Média das compras dos clientes: " + mediaCompras);
+        System.out.print(" - Média das compras dos clientes: " + mediaCompras);
     }
 }
